@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './src/entry.js',
@@ -26,8 +26,8 @@ module.exports = {
         test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
           // for development
-          fallback: "style-loader",
-          //resolve-url-loader may be chained before sass-loader if necessary
+          fallback: 'style-loader',
+          // resolve-url-loader may be chained before sass-loader if necessary
           use: [{
             loader: 'css-loader',
             options: {

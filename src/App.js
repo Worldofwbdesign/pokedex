@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react'
+import { HashRouter, Route } from 'react-router-dom'
 
-import Header from './components/Header';
+import Header from './components/Header'
+import PokemonsList from './components/PokemonsList'
+import PokemonInfo from './components/PokemonInfo'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-      </div>
-    )
-  }
-}
+const App = () =>
+  <HashRouter>
+    <div className="main-container">
+      <Header />
+      <Route exact path="/" component={PokemonsList} />
+      <Route path="/pokemon/:id" component={PokemonInfo} />
+    </div>
+  </HashRouter>
 
 export default App

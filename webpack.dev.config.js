@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const common = require('./webpack.common.config.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const common = require('./webpack.common.config.js')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = merge(common, {
   plugins: [
@@ -20,12 +20,12 @@ module.exports = merge(common, {
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, "/dist"),
+    contentBase: path.join(__dirname, '/dist'),
     compress: true,
     hot: true,
-    port: 3000
+    port: 5000
   },
 
-  devtool: 'inline-source-map',
+  devtool: 'inline-source-map'
 
 })

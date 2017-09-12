@@ -1,19 +1,24 @@
-var express = require('express');
+var express = require('express')
+var path = require('path')
 
 // Create our app
-var app = express();
-const PORT = process.env.PORT || 3000;
+var app = express()
+const PORT = process.env.PORT || 3000
 
-app.use(function(req, res, next) {
-	if (req.headers['x-forwarded-proto'] === 'https') {
-		res.redirect('http://' + req.hostname + req.url);
-	} else {
-		next();
-	}
+app.use(function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] === 'https') {
+    res.redirect('http://' + req.hostname + req.url)
+  } else {
+    next()
+  }
 })
 
-app.use(express.static('dist'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'))
+})
 
-app.listen(PORT, function(){
-	console.log('The server is running in ' + PORT + ' port');
+app.use(express.static('dist'))
+
+app.listen(PORT, function () {
+  console.log('The server is running in ' + PORT + ' port')
 })
