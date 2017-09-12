@@ -1,17 +1,19 @@
+var express = require('express');
 
-const path = require('path');
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 8080;
+// Create our app
+var app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, '/')));
+app.use(function(req, res, next) {
+	if (req.headers['x-forwarded-proto'] === 'https') {
+		res.redirect('http://' + req.hostname + req.url);
+	} else {
+		next();
+	}
+})
 
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + 'index.html');
-});
+app.use(express.static('dist'));
 
-app.listen(PORT, error => {
-  error
-  ? console.error(error)
-  : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
-});
+app.listen(PORT, function(){
+	console.log('The server is running in ' + PORT + ' port');
+})
