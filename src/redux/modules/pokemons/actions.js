@@ -11,5 +11,5 @@ export const getPokemons = (pokemons) => ({
 
 export const handleError = () => ({
   type: actionTypes.POKEMONS_FAIL,
-  payload: {}
+  payload: []
 })

@@ -1,12 +1,13 @@
 import actionTypes from './actionTypes'
 
-const initialState = []
+const initialState = true
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case actionTypes.POKEMONS_SUCCESS:
-      return action.payload
-
+    case actionTypes.OPEN_MENU:
+      return true
+    case actionTypes.CLOSE_MENU:
+      return false
     default:
       return state
   }

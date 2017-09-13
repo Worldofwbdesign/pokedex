@@ -11,7 +11,7 @@ export function * requestPokemonsSaga () {
     // Start preloader
     yield put(toggleIsUpdating())
     // get offices object from firebase
-    const pokemons = yield call(API.fetchPokemonsList, null)
+    const pokemons = yield call(API.fetchPokemonsList, [])
     // Remove preloader
     yield put(toggleIsUpdating())
     // put offices object to state
