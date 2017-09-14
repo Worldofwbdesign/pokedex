@@ -1,9 +1,5 @@
 const path = require('path')
-const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: './src/entry.js',
@@ -46,16 +42,6 @@ module.exports = {
         loader: 'file-loader',
         options: {
           outputPath: 'images/'
-        }
-      },
-      {
-        test: /\.(eot|ttf|woff2?)$/,
-        exclude: [
-          path.resolve(__dirname, 'node_modules')
-        ],
-        loader: 'file-loader',
-        options: {
-          outputPath: 'fonts/'
         }
       }
     ]

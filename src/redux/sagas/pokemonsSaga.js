@@ -10,11 +10,11 @@ export function * requestPokemonsSaga () {
   try {
     // Start preloader
     yield put(toggleIsUpdating())
-    // get offices object from firebase
+    // get pokemons list from api
     const pokemons = yield call(API.fetchPokemonsList, [])
     // Remove preloader
     yield put(toggleIsUpdating())
-    // put offices object to state
+    // put pokemons list to state
     yield put(getPokemons(pokemons))
   } catch (e) {
     yield put(toggleIsUpdating())

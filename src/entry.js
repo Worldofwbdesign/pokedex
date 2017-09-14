@@ -13,7 +13,7 @@ import rootSaga from './redux/sagas'
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark'
+    type: 'light'
   }
 })
 

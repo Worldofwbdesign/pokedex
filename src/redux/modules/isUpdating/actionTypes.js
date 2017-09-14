@@ -1,6 +1,6 @@
 import { createTypes } from 'redux-action-types'
 
-const types = createTypes('offices/toggleUpdating/',
+const types = createTypes('pokemons/toggleUpdating/',
   'TOGGLE_UPDATING'
 )
 

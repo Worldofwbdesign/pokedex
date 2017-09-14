@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import PokemonCard from './PokemonCard'
 
 const PokemonsList = props => {
   const { isUpdating, pokemons } = props
@@ -10,8 +11,8 @@ const PokemonsList = props => {
 
   return (
     <div className="pokemons-list">
-      {pokemons.map(pokemon => {
-        return pokemon.name
+      {pokemons.map((pokemon, index) => {
+        return <PokemonCard name={pokemon.name} sourceUrl={pokemon.resource_uri} key={index} />
       })}
     </div>
   )

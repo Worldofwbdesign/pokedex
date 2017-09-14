@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Drawer from 'material-ui/Drawer'
 import IconButton from 'material-ui/IconButton'
@@ -23,28 +24,38 @@ const styles = theme => ({
   }
 })
 
-class MainMenu extends Component {
-  render () {
-    const { classes, closeMenu, isMenuOpened } = this.props
+const MainMenu = (props) => {
+  const { classes, closeMenu, isMenuOpened } = props
 
-    return (
-      <Drawer
-        type="persistent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-        open={isMenuOpened}
-      >
-        <div className={classes.drawerInner}>
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={closeMenu}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
+  return (
+    <Drawer
+      type="persistent"
+      classes={{
+        paper: classes.drawerPaper
+      }}
+      open={isMenuOpened}
+    >
+      <div className={classes.drawerInner}>
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={closeMenu}>
+            <ChevronLeftIcon />
+          </IconButton>
         </div>
-      </Drawer>
-    )
-  }
+      </div>
+    </Drawer>
+  )
+}
+
+MainMenu.propTypes = {
+  classes: PropTypes.object.isRequired,
+  closeMenu: PropTypes.func.isRequired,
+  isMenuOpened: PropTypes.bool.isRequired
+}
+
+MainMenu.defaultProps = {
+  classes: {},
+  closeMenu: () => null,
+  isMenuOpened: true
 }
 
 export default withStyles(styles)(MainMenu)
