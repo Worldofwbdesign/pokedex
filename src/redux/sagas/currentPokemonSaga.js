@@ -1,9 +1,9 @@
-// @flow
 import { call, put, takeEvery } from 'redux-saga/effects'
 import API from '../api'
 
 import actionTypes from '../modules/currentPokemon/actionTypes'
 import { getCurrentPokemon, handleError } from '../modules/currentPokemon/actions'
+import { toggleIsCurrentUpdating } from '../modules/isCurrentUpdating/actions'
 
 export function * requestCurrentPokemonSaga (action) {
   try {
@@ -11,6 +11,8 @@ export function * requestCurrentPokemonSaga (action) {
     const pokemon = yield call(API.fetchCurrentPokemon, action.payload)
     // put current opened pokemon to state
     yield put(getCurrentPokemon(pokemon))
+    // hide preloader
+    yield put(toggleIsCurrentUpdating())
   } catch (e) {
     yield put(handleError())
     throw new Error(e)

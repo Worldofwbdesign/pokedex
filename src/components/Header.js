@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import classNames from 'classnames'
 import AppBar from 'material-ui/AppBar'
@@ -33,28 +34,38 @@ const styles = theme => ({
   }
 })
 
-class Header extends Component {
-  render () {
-    const { classes, openMenu, isMenuOpened } = this.props
+const Header = (props) => {
+  const { classes, openMenu, isMenuOpened } = props
 
-    return (
-      <AppBar className={classNames(classes.appBar, isMenuOpened && classes.appBarShift)}>
-        <Toolbar disableGutters={!isMenuOpened}>
-          <IconButton
-            color="contrast"
-            aria-label="open drawer"
-            onClick={openMenu}
-            className={classNames(classes.menuButton, isMenuOpened && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography type="title" color="inherit" noWrap>
-            Pokedex
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    )
-  }
+  return (
+    <AppBar className={classNames(classes.appBar, isMenuOpened && classes.appBarShift)}>
+      <Toolbar disableGutters={!isMenuOpened}>
+        <IconButton
+          color="contrast"
+          aria-label="open drawer"
+          onClick={openMenu}
+          className={classNames(classes.menuButton, isMenuOpened && classes.hide)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography type="title" color="inherit" noWrap>
+          Pokedex
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  )
+}
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+  openMenu: PropTypes.func.isRequired,
+  isMenuOpened: PropTypes.bool.isRequired
+}
+
+Header.defaultProps = {
+  classes: {},
+  openMenu: () => null,
+  isMenuOpened: true
 }
 
 export default withStyles(styles)(Header)

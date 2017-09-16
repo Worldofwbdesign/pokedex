@@ -3,13 +3,16 @@ import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Drawer from 'material-ui/Drawer'
 import IconButton from 'material-ui/IconButton'
+import Divider from 'material-ui/Divider'
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import { drawerWidth } from '../utils/const'
+
+import TypesSelectContainer from '../containers/TypesSelectContainer'
 
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
-    height: 'auto',
+    height: '100%',
     width: drawerWidth
   },
   drawerHeader: {
@@ -40,6 +43,10 @@ const MainMenu = (props) => {
           <IconButton onClick={closeMenu}>
             <ChevronLeftIcon />
           </IconButton>
+        </div>
+        <Divider />
+        <div className="main-menu">
+          <TypesSelectContainer />
         </div>
       </div>
     </Drawer>

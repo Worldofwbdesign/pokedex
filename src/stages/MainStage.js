@@ -61,11 +61,19 @@ class MainStage extends Component {
   }
 
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    pokemonTypes: PropTypes.array.isRequired,
+    isMenuOpened: PropTypes.bool,
+    openMenu: PropTypes.func.isRequired,
+    closeMenu: PropTypes.func.isRequired
   }
 
   static defaultProps = {
-    classes: {}
+    classes: {},
+    pokemonTypes: [],
+    isMenuOpened: true,
+    openMenu: () => null,
+    closeMenu: () => null
   }
 
   handleDrawerClose = () => {
@@ -73,13 +81,13 @@ class MainStage extends Component {
   }
 
   render () {
-    const { classes, openMenu, closeMenu, isMenuOpened } = this.props
+    const { classes, openMenu, closeMenu, isMenuOpened, pokemonTypes } = this.props
 
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <Header isMenuOpened={isMenuOpened} openMenu={openMenu} />
-          <MainMenu isMenuOpened={isMenuOpened} closeMenu={closeMenu} />
+          <MainMenu pokemonTypes={pokemonTypes} isMenuOpened={isMenuOpened} closeMenu={closeMenu} />
           <main className={classNames(classes.content, isMenuOpened && classes.contentShift)}>
             <PokemonsListContainer />
           </main>
@@ -90,7 +98,8 @@ class MainStage extends Component {
 }
 
 const mapStateToProps = state => ({
-  isMenuOpened: state.isMenuOpened
+  isMenuOpened: state.isMenuOpened,
+  pokemonTypes: state.pokemonTypes
 })
 
 export default compose(

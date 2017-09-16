@@ -9,10 +9,10 @@ const PokemonCard = (props) => {
   const avatar = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
   return (
-    <Link to={`/pokemon/${id}`} className="pokemon">
-      <h3 className="pokemon__name">{name}</h3>
-      <div className="pokemon__img-wrapp">
-        <img src={avatar} alt={name} className="pokemon__avatar"/>
+    <Link to={`/pokemon/${id}`} className="single-pokemon">
+      <h3 className="single-pokemon__name">{name}</h3>
+      <div className="single-pokemon__img-wrapp">
+        <img src={avatar} alt={name} className="single-pokemon__avatar"/>
       </div>
     </Link>
   )

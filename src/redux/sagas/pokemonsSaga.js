@@ -1,4 +1,3 @@
-// @flow
 import { call, put, takeEvery } from 'redux-saga/effects'
 import API from '../api'
 
@@ -24,6 +23,6 @@ export function * requestPokemonsSaga () {
 }
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-export default function * watchRequestOfficesSaga () {
+export default function * watchRequestPokemonsSaga () {
   yield takeEvery(actionTypes.POKEMONS_REQUEST, requestPokemonsSaga)
 }

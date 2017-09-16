@@ -23,4 +23,9 @@ PokemonsList.propTypes = {
   pokemons: PropTypes.array.isRequired
 }
 
+PokemonsList.defaultProps = {
+  isUpdating: true,
+  pokemons: []
+}
+
 export default PokemonsList
