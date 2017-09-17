@@ -17,7 +17,10 @@ module.exports = merge(common, {
     new ExtractTextPlugin({
       filename: 'css/[name].css'
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      exclude: /(node_modules|libs)/
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')

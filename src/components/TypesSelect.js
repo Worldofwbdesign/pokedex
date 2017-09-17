@@ -7,13 +7,9 @@ import { FormControl } from 'material-ui/Form'
 import Select from 'material-ui/Select'
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120
+    width: '100%'
   }
 })
 
@@ -42,15 +38,18 @@ class TypesSelect extends Component {
 
   handleChange = (e) => {
     const value = e.target.value
-    this.setState({ value })
-    this.props.onRequestTypeList(e.target.value)
+
+    if (value !== this.state.value) {
+      this.setState({ value })
+      this.props.onRequestTypeList(e.target.value)
+    }
   }
 
   render () {
     const { classes } = this.props
 
     return (
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} fullWidth>
         <InputLabel htmlFor="types">Select type</InputLabel>
         <Select
           value={this.state.value}

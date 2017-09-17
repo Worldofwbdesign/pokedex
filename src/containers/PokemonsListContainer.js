@@ -3,10 +3,20 @@ import { connect } from 'react-redux'
 
 import PokemonsList from '../components/PokemonsList'
 import SearchBarContainer from './SearchBarContainer'
+import PaginationContainer from '../containers/PaginationContainer'
 import { requestGetPokemons } from '../redux/modules/pokemons/actions'
 import API from '../redux/api'
 
 class PokemonsListContainer extends Component {
+  state = {
+    pageOfPokemons: []
+  }
+
+  onChangePage = (pageOfPokemons) => {
+    // update state with new page of items
+    this.setState({ pageOfPokemons })
+  }
+
   componentDidMount () {
     this.props.requestGetPokemons()
   }
@@ -22,7 +32,8 @@ class PokemonsListContainer extends Component {
         <div className="search-container">
           <SearchBarContainer />
         </div>
-        <PokemonsList isUpdating={isUpdating} pokemons={filteredPokemons} />
+        <PokemonsList isUpdating={isUpdating} pokemons={this.state.pageOfPokemons} />
+        <PaginationContainer items={filteredPokemons} onChangePage={this.onChangePage} />
       </div>
     )
   }

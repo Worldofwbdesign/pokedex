@@ -1,3 +1,5 @@
-const drawerWidth = 400
+const drawerWidth = 200
 
-export { drawerWidth }
+const pagerParams = [20, 40, 60, 80]
+
+export { drawerWidth, pagerParams }

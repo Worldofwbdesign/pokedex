@@ -4,6 +4,7 @@ import pokemonsReducer from './modules/pokemons/reducer'
 import pokemonTypesReducer from './modules/pokemonTypes/reducer'
 import currentTypeListReducer from './modules/currentTypeList/reducer'
 import isUpdatingReducer from './modules/isUpdating/reducer'
+import pokemonsPerPageReducer from './modules/pokemonsPerPage/reducer'
 import isCurrentUpdatingReducer from './modules/isCurrentUpdating/reducer'
 import isMenuOpenedReducer from './modules/isMenuOpened/reducer'
 import currentPokemonReducer from './modules/currentPokemon/reducer'
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   pokemonTypes: pokemonTypesReducer,
   currentTypeList: currentTypeListReducer,
   isUpdating: isUpdatingReducer,
+  pokemonsPerPage: pokemonsPerPageReducer,
   isCurrentUpdating: isCurrentUpdatingReducer,
   isMenuOpened: isMenuOpenedReducer,
   currentPokemon: currentPokemonReducer,

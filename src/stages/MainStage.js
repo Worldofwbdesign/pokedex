@@ -28,8 +28,11 @@ const styles = theme => ({
     display: 'none'
   },
   content: {
+    position: 'relative',
+    boxSizing: 'border-box',
     width: '100%',
     marginLeft: -drawerWidth,
+    paddingBottom: 80,
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
@@ -37,10 +40,12 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
+    minHeight: 'calc(100vh - 56px)',
     height: 'calc(100% - 56px)',
     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       content: {
+        minHeight: 'calc(100vh - 64px)',
         height: 'calc(100% - 64px)',
         marginTop: 64
       }

@@ -8,6 +8,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import { drawerWidth } from '../utils/const'
 
 import TypesSelectContainer from '../containers/TypesSelectContainer'
+import PageCountSelectContainer from '../containers/PageCountSelectContainer'
 
 const styles = theme => ({
   drawerPaper: {
@@ -47,6 +48,7 @@ const MainMenu = (props) => {
         <Divider />
         <div className="main-menu">
           <TypesSelectContainer />
+          <PageCountSelectContainer />
         </div>
       </div>
     </Drawer>

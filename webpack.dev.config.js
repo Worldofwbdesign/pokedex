@@ -10,6 +10,12 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: './templates/index.html'
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1
+      }
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin({ disable: true }),
     new webpack.DefinePlugin({
@@ -21,7 +27,6 @@ module.exports = merge(common, {
 
   devServer: {
     contentBase: path.join(__dirname, '/dist'),
-    compress: true,
     hot: true,
     port: 5000
   },

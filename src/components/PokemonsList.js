@@ -1,12 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import PokemonCard from './PokemonCard'
+import ProgressBarCircle from './ProgressBarCircle'
 
 const PokemonsList = props => {
   const { isUpdating, pokemons } = props
 
   if (isUpdating) {
-    return <h1>Updating</h1>
+    return (
+      <div className="progress-bar-container">
+        <ProgressBarCircle />
+      </div>
+    )
   }
 
   return (
