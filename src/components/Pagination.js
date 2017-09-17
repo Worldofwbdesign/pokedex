@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
-import _ from 'lodash'
+import range from 'lodash/range'
 import Button from 'material-ui/Button'
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import ChevronRightIcon from 'material-ui-icons/ChevronRight'
@@ -123,7 +123,7 @@ class Pagination extends Component {
     const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1)
 
     // create an array of pages to ng-repeat in the pager control
-    const pages = _.range(startPage, endPage + 1)
+    const pages = range(startPage, endPage + 1)
 
     // return object with all pager properties required by the view
     return {

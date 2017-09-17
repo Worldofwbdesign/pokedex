@@ -1,6 +1,7 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
+import debounce from 'lodash/debounce'
 
 const styles = theme => ({
   textField: {
@@ -11,7 +12,10 @@ const styles = theme => ({
 })
 
 const SearchBar = (props) => {
-  const handleChange = (e) => props.onSearchQuery(e.target.value)
+  const handleChange = (e) => {
+    const debounced = debounce(props.onSearchQuery, 300)
+    debounced(e.target.value)
+  }
 
   return <TextField
     id="search"

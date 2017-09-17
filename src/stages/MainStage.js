@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withStyles } from 'material-ui/styles'
 import classNames from 'classnames'
-import { compose } from 'recompose'
+import compose from 'recompose/compose'
 import { drawerWidth } from '../utils/const'
 
 import Header from '../components/Header'

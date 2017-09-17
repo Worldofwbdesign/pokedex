@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
@@ -17,9 +18,10 @@ module.exports = merge(common, {
     new ExtractTextPlugin({
       filename: 'css/[name].css'
     }),
-    new webpack.optimize.UglifyJsPlugin({
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new UglifyJsPlugin({
       comments: false,
-      exclude: /(node_modules|libs)/
+      exclude: /(node_modules)/
     }),
     new webpack.DefinePlugin({
       'process.env': {

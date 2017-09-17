@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = merge(common, {
@@ -10,11 +11,10 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: './templates/index.html'
     }),
+    new BundleAnalyzerPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
-      }
+      minChunks: Infinity
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin({ disable: true }),
@@ -27,8 +27,7 @@ module.exports = merge(common, {
 
   devServer: {
     contentBase: path.join(__dirname, '/dist'),
-    hot: true,
-    port: 5000
+    port: 3000
   },
 
   devtool: 'inline-source-map'
