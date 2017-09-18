@@ -4,7 +4,7 @@ import PokemonCard from './PokemonCard'
 import ProgressBarCircle from './ProgressBarCircle'
 
 const PokemonsList = props => {
-  const { isUpdating, pokemons } = props
+  const { isUpdating, pokemons, isSearchEmpty } = props
 
   if (isUpdating) {
     return (
@@ -14,10 +14,14 @@ const PokemonsList = props => {
     )
   }
 
+  if (isSearchEmpty) {
+    return <span className="empty-search">No search results...</span>
+  }
+
   return (
     <div className="pokemons-list">
       {pokemons.map((pokemon, index) => {
-        return <PokemonCard name={pokemon.name} sourceUrl={pokemon.resource_uri} key={index} />
+        return <PokemonCard name={pokemon.name} sourceUrl={pokemon.resource_uri} key={`${pokemon.name}${index}`} />
       })}
     </div>
   )
@@ -25,12 +29,14 @@ const PokemonsList = props => {
 
 PokemonsList.propTypes = {
   isUpdating: PropTypes.bool.isRequired,
-  pokemons: PropTypes.array.isRequired
+  pokemons: PropTypes.array.isRequired,
+  isSearchEmpty: PropTypes.bool.isRequired
 }
 
 PokemonsList.defaultProps = {
   isUpdating: true,
-  pokemons: []
+  pokemons: [],
+  isSearchEmpty: false
 }
 
 export default PokemonsList

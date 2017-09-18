@@ -15,17 +15,24 @@ const styles = theme => ({
     left: 0,
     width: '100%',
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'center'
   },
   icon: {
     fontSize: 30
   },
   button: {
-    width: 40,
-    height: 40,
+    width: 25,
+    height: 25,
     minWidth: 'auto',
-    margin: theme.spacing.unit / 2,
-    padding: '0px 11px'
+    minHeight: 'auto',
+    margin: theme.spacing.unit,
+    padding: '0',
+    [theme.breakpoints.up('sm')]: {
+      width: 40,
+      height: 40,
+      margin: theme.spacing.unit / 2,
+    }
   }
 })
 
@@ -36,14 +43,16 @@ class Pagination extends Component {
     items: PropTypes.array.isRequired,
     onChangePage: PropTypes.func.isRequired,
     initialPage: PropTypes.number,
-    pokemonsPerPage: PropTypes.number
+    pokemonsPerPage: PropTypes.number,
+    isSearchEmpty: PropTypes.bool
   }
 
   static defaultProps = {
     items: [],
     onChangePage: () => null,
     initialPage: 1,
-    pokemonsPerPage: 20
+    pokemonsPerPage: 20,
+    isSearchEmpty: false
   }
 
   componentWillMount () {
@@ -141,11 +150,11 @@ class Pagination extends Component {
 
   render () {
     const { pager } = this.state
-    const { classes } = this.props
+    const { classes, isSearchEmpty } = this.props
     const firstPageDisabling = pager.currentPage === 1
     const lastPageDisabling = pager.currentPage === pager.totalPages
 
-    if (!pager.pages || pager.pages.length <= 1) {
+    if (!pager.pages || pager.pages.length <= 1 || isSearchEmpty) {
       // don't display pager if there is only 1 page
       return null
     }

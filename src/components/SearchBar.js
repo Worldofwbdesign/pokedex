@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
 import { withStyles } from 'material-ui/styles'
 import debounce from 'lodash/debounce'
@@ -14,7 +15,7 @@ const styles = theme => ({
 const SearchBar = (props) => {
   const handleChange = (e) => {
     const debounced = debounce(props.onSearchQuery, 300)
-    debounced(e.target.value)
+    debounced(e.target.value.toLowerCase())
   }
 
   return <TextField
@@ -24,6 +25,14 @@ const SearchBar = (props) => {
     fullWidth
     onChange={handleChange}
   />
+}
+
+SearchBar.propTypes = {
+  onSearchQuery: PropTypes.func.isRequired
+}
+
+SearchBar.defaultProps = {
+  onSearchQuery: () => null
 }
 
 export default withStyles(styles)(SearchBar)

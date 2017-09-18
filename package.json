@@ -61,6 +61,7 @@
     "redux": "^3.7.2",
     "redux-action-types": "^1.0.1",
     "redux-saga": "^0.15.6",
+    "reselect": "^3.0.1",
     "webpack": "^3.5.5"
   }
 }

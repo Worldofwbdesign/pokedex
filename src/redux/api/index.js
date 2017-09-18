@@ -28,20 +28,6 @@ const API = {
         return res.data.pokemon
       }),
 
-  filterPokemons: (pokemons, searchText) => {
-    let filteredPokemons = pokemons
-
-    // Filter by searchText
-    if (searchText.length > 1) {
-      filteredPokemons = filteredPokemons.filter((pokemon) => {
-        const text = pokemon.name.toLowerCase()
-        return searchText.length === 0 || text.indexOf(searchText.toLowerCase()) > -1
-      })
-    }
-
-    return filteredPokemons
-  },
-
   mapPokemonsTypeList: (pokemons) =>
     pokemons.map((pokemon) => {
       const mappedPokemon = pokemon.pokemon

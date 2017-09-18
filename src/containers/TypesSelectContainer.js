@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import TypesSelect from '../components/TypesSelect'
@@ -6,6 +7,14 @@ import { requestPokemonTypes } from '../redux/modules/pokemonTypes/actions'
 import { requestTypeList } from '../redux/modules/currentTypeList/actions'
 
 class TypesSelectContainer extends Component {
+  static propTypes = {
+    requestPokemonTypes: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    requestPokemonTypes: () => null
+  }
+
   componentDidMount () {
     this.props.requestPokemonTypes()
   }

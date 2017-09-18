@@ -22,4 +22,8 @@ ProgressBarCircle.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
+ProgressBarCircle.defaultProps = {
+  classes: {}
+}
+
 export default withStyles(styles)(ProgressBarCircle)
