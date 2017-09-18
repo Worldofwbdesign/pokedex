@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config.js')
@@ -7,6 +8,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = merge(common, {
+
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash].js'
+  },
 
   plugins: [
     new CleanWebpackPlugin((['dist'])),
