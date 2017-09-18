@@ -1,4 +1,4 @@
 # Pokedex in React & Redux
 Test task for DecisionMapper
 
-[DEMO](https://www.google.com)
+[DEMO](http://pokedexx-app.herokuapp.com/)
