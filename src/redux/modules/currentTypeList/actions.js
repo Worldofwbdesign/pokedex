@@ -1,11 +1,11 @@
 import actionTypes from './actionTypes'
 
-export const requestTypeList = (type) => ({
+export const requestTypeList = type => ({
   type: actionTypes.TYPE_LIST_REQUEST,
   payload: type
 })
 
-export const getTypeList = (pokemons) => ({
+export const getTypeList = pokemons => ({
   type: actionTypes.TYPE_LIST_SUCCESS,
   payload: pokemons
 })

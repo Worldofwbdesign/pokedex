@@ -1,18 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import PokemonCard from './PokemonCard'
-import ProgressBarCircle from './ProgressBarCircle'
+import LoaderHOC from '../HOC/LoaderHOC'
 
 const PokemonsList = props => {
   const { isUpdating, pokemons, isSearchEmpty } = props
-
-  if (isUpdating) {
-    return (
-      <div className="progress-bar-container">
-        <ProgressBarCircle />
-      </div>
-    )
-  }
 
   if (isSearchEmpty) {
     return <span className="empty-search">No search results...</span>
@@ -21,7 +13,13 @@ const PokemonsList = props => {
   return (
     <div className="pokemons-list">
       {pokemons.map((pokemon, index) => {
-        return <PokemonCard name={pokemon.name} sourceUrl={pokemon.resource_uri} key={`${pokemon.name}${index}`} />
+        return (
+          <PokemonCard
+            name={pokemon.name}
+            sourceUrl={pokemon.resource_uri}
+            key={`${pokemon.name}${index}`}
+          />
+        )
       })}
     </div>
   )
@@ -39,4 +37,4 @@ PokemonsList.defaultProps = {
   isSearchEmpty: false
 }
 
-export default PokemonsList
+export default LoaderHOC('pokemons')(PokemonsList)

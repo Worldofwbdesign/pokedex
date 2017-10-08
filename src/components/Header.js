@@ -34,17 +34,25 @@ const styles = theme => ({
   }
 })
 
-const Header = (props) => {
+const Header = props => {
   const { classes, openMenu, isMenuOpened } = props
 
   return (
-    <AppBar className={classNames(classes.appBar, isMenuOpened && classes.appBarShift)}>
+    <AppBar
+      className={classNames(
+        classes.appBar,
+        isMenuOpened && classes.appBarShift
+      )}
+    >
       <Toolbar disableGutters={!isMenuOpened}>
         <IconButton
           color="contrast"
           aria-label="open drawer"
           onClick={openMenu}
-          className={classNames(classes.menuButton, isMenuOpened && classes.hide)}
+          className={classNames(
+            classes.menuButton,
+            isMenuOpened && classes.hide
+          )}
         >
           <MenuIcon />
         </IconButton>

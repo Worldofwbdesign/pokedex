@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
+import { withState, compose } from 'recompose'
 import Input, { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
 import { FormControl } from 'material-ui/Form'
@@ -13,58 +14,65 @@ const styles = theme => ({
   }
 })
 
-class TypesSelect extends Component {
-  state = {
-    value: 'none'
-  };
+const TypesSelect = props => {
+  const { pokemonTypes, onRequestTypeList, value, setValue, classes } = props
 
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    pokemonTypes: PropTypes.array.isRequired,
-    setType: PropTypes.func.isRequired
-  }
-
-  static defaultProps = {
-    classes: {},
-    pokemonTypes: [],
-    setType: () => null
-  }
-
-  renderTypesForSelect = () => {
-    return this.props.pokemonTypes.map((type, index) => {
-      return <MenuItem key={`${type}${index}`} value={type}>{type}</MenuItem>
+  const renderTypesForSelect = () => {
+    return pokemonTypes.map((type, index) => {
+      return (
+        <MenuItem key={`${type}${index}`} value={type}>
+          {type}
+        </MenuItem>
+      )
     })
   }
 
-  handleChange = (e) => {
-    const value = e.target.value
+  const handleChange = e => {
+    const newValue = e.target.value
 
-    if (value !== this.state.value) {
-      this.setState({ value })
-      this.props.onRequestTypeList(e.target.value)
+    if (newValue !== value) {
+      setValue(newValue)
+      onRequestTypeList(newValue)
     }
   }
 
-  render () {
-    const { classes } = this.props
-
-    return (
-      <FormControl className={classes.formControl} fullWidth>
-        <InputLabel htmlFor="types">Select type</InputLabel>
-        <Select
-          value={this.state.value}
-          onChange={this.handleChange}
-          input={<Input id="types" />}
-          fullWidth
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {this.renderTypesForSelect()}
-        </Select>
-      </FormControl>
-    )
-  }
+  return (
+    <FormControl className={classes.formControl} fullWidth>
+      <InputLabel htmlFor="types">Select type</InputLabel>
+      <Select
+        value={value}
+        onChange={handleChange}
+        input={<Input id="types" placeholder="None" />}
+        fullWidth
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {renderTypesForSelect()}
+      </Select>
+    </FormControl>
+  )
 }
 
-export default withStyles(styles)(TypesSelect)
+TypesSelect.propTypes = {
+  classes: PropTypes.object.isRequired,
+  pokemonTypes: PropTypes.array.isRequired,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  onRequestTypeList: PropTypes.func.isRequired
+}
+
+TypesSelect.defaultProps = {
+  classes: {},
+  pokemonTypes: [],
+  value: 'none',
+  setValue: () => null,
+  onRequestTypeList: () => null
+}
+
+const enhance = compose(
+  withStyles(styles),
+  withState('value', 'setValue', 'none')
+)
+
+export default enhance(TypesSelect)

@@ -12,7 +12,7 @@ class TypesSelectContainer extends Component {
   }
 
   static defaultProps = {
-    requestPokemonTypes: () => null
+    requestPokemonTypes: () => false
   }
 
   componentDidMount () {
@@ -21,12 +21,20 @@ class TypesSelectContainer extends Component {
 
   render () {
     const { pokemonTypes, requestTypeList } = this.props
-    return <TypesSelect pokemonTypes={pokemonTypes} onRequestTypeList={requestTypeList}/>
+    return (
+      <TypesSelect
+        pokemonTypes={pokemonTypes}
+        onRequestTypeList={requestTypeList}
+      />
+    )
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   pokemonTypes: state.pokemonTypes
 })
 
-export default connect(mapStateToProps, { requestPokemonTypes, requestTypeList })(TypesSelectContainer)
+export default connect(mapStateToProps, {
+  requestPokemonTypes,
+  requestTypeList
+})(TypesSelectContainer)
